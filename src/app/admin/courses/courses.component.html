@@ -1,0 +1,50 @@
+<p>Coursese works!</p>
+
+
+
+<input type="text" [(ngModel)]="_filterText">
+
+<button (click)="openCreateDialog()">Add course</button>
+<table>
+   <tbody>
+    <tr >
+        <td>ID</td>
+        <td>Course name</td>
+    </tr>
+
+    <tr *ngFor="let c of home.course | filtter:_filterText">
+        <td> {{c.id}} </td>
+        <td>  {{c.coursename | uppercase}} </td>
+        <td> <img src="../../../assets/Images/{{c.image}}" alt="" width="200px" height="200px"> </td>
+        <td> <button (click)="delete(c.id)">Delete course</button> </td>
+    </tr>
+   </tbody>
+</table>
+
+<ng-template #createDialog class="" style="width: 100vw;">
+    <h1 style="text-align: center; margin: 0;">Add Course</h1>
+    <form class="formAddFlight" [formGroup]="formCourse" style="width: 30vw; max-height: 72vh; overflow: auto; display: flex; flex-direction: column; align-items: center;">
+  
+     
+          <label>Name</label><br>
+          <input type="text" formControlName="Coursename" matInput placeholder="course name">
+     
+  
+      
+          <label>Category </label>
+          <br>
+          <input type="text" formControlName="Categoryid" matInput placeholder="Categoryid">
+     
+  
+ 
+      <div style="width: 100%;">
+        <input type="file" #file accept="image/*" id="image-upload" formControlName="Image" (change)="uploadImage(file.files)">
+      </div>
+  
+      <div name="button" mat-dialog-actions style="margin-top: 16px;">
+          <button style="background-color: #04aa6d; color: #fff;margin-right: 10px;" (click)="createCourse()" mat-button [mat-dialog-close]="true">Add</button>
+          <button style="background-color: red; color: #fff;" mat-button mat-dialog-close="no" cdkFocusInitial>Cancel</button>
+      </div>
+  </form>
+  
+  </ng-template>

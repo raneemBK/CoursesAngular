@@ -1,0 +1,19 @@
+<p>index user works!</p>
+
+
+<table>
+   <tbody>
+    <tr >
+        <td>ID</td>
+        <td>Course name</td>
+    </tr>
+
+    <tr *ngFor="let c of home.course">
+        <td> {{c.id}} </td>
+        <td>  {{c.coursename}} </td>
+        <td> <img src="../../../assets/Images/{{c.image}}" alt="" width="200px" height="200px"> </td>
+      
+    </tr>
+   </tbody>
+</table>
+
