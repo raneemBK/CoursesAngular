@@ -26,9 +26,17 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/HomeAssets/assets/css/bootstrap.min.css",
+              "src/assets/HomeAssets/assets/css/all.min.css",
+              "src/assets/HomeAssets/assets/css/style.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/HomeAssets/assets/js/jquery-3.2.1.min.js",
+              "src/assets/HomeAssets/assets/js/popper.min.js",
+              "src/assets/HomeAssets/assets/js/bootstrap.min.js",
+              "src/assets/HomeAssets/assets/js/script.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {

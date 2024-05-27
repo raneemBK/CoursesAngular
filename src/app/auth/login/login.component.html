@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="example-container">
+   <form (ngSubmit)="loginUser()">
+    <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input matInput
+               placeholder="pat@example.com"
+               [(ngModel)]="loginData.email"
+               [ngModelOptions]="{standalone: true}"
+               required>
+        
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput
+               placeholder="*************"
+               [(ngModel)] = "loginData.pass"
+               [ngModelOptions]="{standalone: true}"
+               required>
+       
+      </mat-form-field>
+      <input  type="submit">
+   </form>
+  </div>
