@@ -14,7 +14,7 @@
 
     <tr *ngFor="let c of home.course | filtter:_filterText">
         <td> {{c.id}} </td>
-        <td>  {{c.coursename | uppercase}} </td>
+        <td>  {{c.coursename | lowercase}} </td>
         <td> <img src="../../../assets/Images/{{c.image}}" alt="" width="200px" height="200px"> </td>
         <td> <button (click)="delete(c.id)">Delete course</button> </td>
     </tr>
@@ -46,5 +46,27 @@
           <button style="background-color: red; color: #fff;" mat-button mat-dialog-close="no" cdkFocusInitial>Cancel</button>
       </div>
   </form>
-  
+
   </ng-template>
+
+  <section class="bg-04">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="heading">
+            <h2>OUR NEWS</h2>
+          </div>
+        </div>
+        <div class="blog-main-card d-flex">
+          <app-course-card 
+            *ngFor="let obj of home.course"
+            [courseName]="obj.coursename" 
+            [categoryid]="obj.categoryid" 
+            [image]="obj.image"
+            (openProfile)="showProfile()">
+          </app-course-card>
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -4,48 +4,69 @@ import { MatDialog, MatDialogActions, MatDialogClose, MatDialogContent, MatDialo
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FiltterPipe } from '../../Pipes/filtter.pipe';
+import { CourseCardComponent } from '../course-card/course-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule, MatDialogModule ,MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose,FormsModule,FiltterPipe],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+    FormsModule,
+    FiltterPipe,
+    CourseCardComponent
+  ],
   templateUrl: './courses.component.html',
-  styleUrl: './courses.component.css'
+  styleUrls: ['./courses.component.css'] // Fixed typo from 'styleUrl' to 'styleUrls'
 })
 export class CoursesComponent implements OnInit {
-  constructor (public home: HomeService, public dialog: MatDialog){}
-  ngOnInit(): void {
-    this.home.getAll()
-  }
-  _filterText:string= '';
+  constructor(public home: HomeService, public dialog: MatDialog,private router: Router) {}
 
-  delete(id:any){
-    console.log(id)
+  ngOnInit(): void {
+    this.home.getAll();
+  }
+
+  _filterText: string = '';
+
+  delete(id: any) {
+    console.log(id);
     this.home.deleteCourse(id);
   }
 
-  formCourse:  FormGroup = new FormGroup({
-    Coursename:  new FormControl(''),
+  formCourse: FormGroup = new FormGroup({
+    Coursename: new FormControl(''),
     Categoryid: new FormControl(''),
-    Image : new FormControl('')
-    
-  })
-  @ViewChild('createDialog')createDialoge !: TemplateRef<any>
-  openCreateDialog(){
-    this.dialog.open(this.createDialoge)
+    Image: new FormControl('')
+  });
+
+  @ViewChild('createDialog') createDialog!: TemplateRef<any>;
+
+  openCreateDialog() {
+    this.dialog.open(this.createDialog);
   }
 
-  createCourse(){
-    this.home.insertCourse(this.formCourse.value)
+  createCourse() {
+    this.home.insertCourse(this.formCourse.value);
   }
- 
-  uploadImage(file:any){
-    if (file.length == 0){
-      return ;
+
+  uploadImage(file: any) {
+    if (file.length == 0) {
+      return;
     }
     let fileToUpload = <File>file[0];
-    const formData = new FormData;
+    const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     this.home.uploadImage(formData);
   }
+
+  showProfile(){
+    console.log('inn')
+    this.router.navigate(['admin/profile'])
+    }
 }

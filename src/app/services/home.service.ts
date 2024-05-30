@@ -35,9 +35,9 @@ export class HomeService {
     body.Image = this.showImage;
     this.http.post('https://localhost:7118/api/Courses/InsertCourse',body).subscribe((res:any)=>{
       console.log(res)
-      setTimeout(()=>{
-        window.location.reload();
-      },1000 )
+      // setTimeout(()=>{
+      //   window.location.reload();
+      // },1000 )
     },err=>{
       console.log(err)
     } )
